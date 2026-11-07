@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "run_script_sha256": "d7afb47b591a2a1f630418d6b9d1c839666ef9d9c54f190b5cc885e29957b0c9",
+  "trajectories": 192,
+  "epoch_rows": 1152,
+  "python_requirement": "3.9+",
+  "metric_scope": "FCFS node operations, not end-to-end Raft transactions",
+  "files_sha256": {
+    "epochs.csv": "59cc3df8eff11439eefb04492103936299ba6a142c97b2312a25ce63e4b0844c",
+    "inputs.json": "f91cd843fb42a63d36a3e2ce4329b3e558abedbd8c23e00e8b38c4164296e9f9",
+    "moves.json": "522e3ec860bf7812c568d1ab1a442528500e19f04a5c9a500bb539243cccce67",
+    "config.json": "9bd8a4ee7e15bed0dcbcaae103d9cfd9353989e6c16763f75abaaa97d41a6304"
+  }
+}

@@ -15,6 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Verify experiment invariants
+        run: python -m unittest discover -s experiment -p 'test_*.py' -v
+
       - uses: wtfjoke/setup-tectonic@v4
         with:
           tectonic-version: "0.17.0"
@@ -53,7 +56,7 @@ jobs:
           EOF
           tectonic -o .ci-fontcheck .ci-fontcheck/fontcheck.tex
 
-      - name: Build template
+      - name: Build article
         run: mkdir -p build && tectonic -o build article.tex
 
       - name: Build example
@@ -78,3 +81,4 @@ jobs:
         with:
           path: example/build/example.pdf
           archive: false
+

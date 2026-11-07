@@ -23,3 +23,8 @@ dist/
 *~
 .idea/
 .vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+
