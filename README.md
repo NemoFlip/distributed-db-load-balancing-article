@@ -1,127 +1,35 @@
-# Шаблон научной статьи НИТУ «МИСиС» (LaTeX)
+# Сравнительный анализ и классификация моделей балансировки нагрузки в распределённых СУБД
 
-LaTeX-шаблон статьи для сборника НИТУ «МИСиС»: XeLaTeX, две колонки.  
-Репозиторий: [sadekovlar/misis-article-latex](https://github.com/sadekovlar/misis-article-latex)
+Хлопцев Артём Евгеньевич, ПО-1.
 
-Шаблон воспроизводит оформление эталонной статьи. **Параметры вёрстки заданы в `misisarticle.cls`** — в `.tex`-файле остаётся текст и команды титула.
+Материалы научной статьи. ПЗ-3.
 
-## Быстрый старт
-
-1. Откройте `article.tex`.
-2. Компилятор: **XeLaTeX** (локально подойдёт и tectonic).
-3. Заполните коды, название, авторов, аннотацию и ключевые слова.
-
-### Overleaf
-
-В Overleaf загружайте не весь репозиторий, а архив без примера:
-
-```bash
-make dist
-# → dist/misis-article.zip
-```
-
-1. New Project → Upload Project → `dist/misis-article.zip`.
-2. Menu → Compiler → **XeLaTeX**.
-3. Главный файл — `article.tex`. Заполните блоки и нажмите Recompile.
-
-### Локально
-
-```bash
-# macOS: MacTeX, либо brew install tectonic
-make article
-# PDF: build/article.pdf
-
-# либо прямо:
-tectonic article.tex
-xelatex article.tex && xelatex article.tex
-```
-
-Файл `misisarticle.cls` должен лежать рядом с вашим `.tex`.
-
-## Что заполнить в `article.tex`
-
-1. `\grnti{}`, `\asjc{}`, `\oecd{}` — коды, либо `{}`, если код не нужен.
-2. `\title{}` — название.
-3. `\misisauthor{ФИО}{кафедра}{город, страна}{email}` — на каждого автора. Первый попадает в левую колонку, остальные — в правую.
-4. `\abstract{}` или `\setabstract{}`, `\keywords{}` или `\setkeywords{}`. Пары команд эквивалентны.
-5. Разделы `\section{}`, `\subsection{}`, рисунки, таблицы и список `\begin{thebibliography}`.
-
-Список литературы набирается вручную в `thebibliography`. Класс оформляет этот список сам.
-
-### Минимальный пример
-
-```latex
-\documentclass{misisarticle}
-
-\grnti{47.01.07, 47.01.09}
-\asjc{1707, 2207}
-\oecd{1020, 1070}
-
-\title{Название статьи}
-
-\misisauthor{И.~О.~Иванов}{кафедра ... НИТУ «МИСиС»}{Москва, Россия}{student@edu.misis.ru}
-\misisauthor{П.~П.~Петров}{кафедра ... НИТУ «МИСиС»}{Москва, Россия}{student2@edu.misis.ru}
-
-\setabstract{Текст аннотации...}
-\setkeywords{ключевое слово 1, ключевое слово 2}
-
-\begin{document}
-\maketitle
-
-\section{Введение}
-Текст раздела...
-\end{document}
-```
-
-## Файлы
+## Структура
 
 | Файл | Назначение |
-|------|------------|
-| `article.tex` | Пустой шаблон |
+| --- | --- |
+| `article.tex` | Статья |
 | `misisarticle.cls` | Класс оформления |
-| `example/` | Эталонная статья для проверки класса, в zip для Overleaf не входит |
-| `Makefile` | `make article`, `make example`, `make dist` |
+| `.github/workflows/build.yml` | Сборка PDF в GitHub Actions |
+| `Makefile` | Локальная сборка и архив для Overleaf |
+| `example/` | Пример оформления |
 
-## Оформление
+## Сборка
 
-| Элемент | Параметры |
-|---------|-----------|
-| Формат | A4, **две колонки** (IEEE-style) |
-| Поля | верх 1,9 см; низ 2,54 см; лево/право 1,57 см; зазор колонок 0,635 см |
-| Шрифт | Times New Roman, **10 pt** (в двухколоночном режиме). Если шрифта нет, класс берёт TeX Gyre Termes |
-| Переносы слов | **отключены** по всему документу |
-| Абзацный отступ | 0,51 см |
-| Классификация | `ГРНТИ …`, `ASJC …`, `OECD …` — подпись и коды **в одной строке** |
-| Название | 24 pt, по центру, на всю ширину; после него — строка отступа |
-| Авторы | 11 pt; невидимая таблица: **1-й слева, 2-й справа**, между колонками пустой зазор; внутри каждой ячейки текст **по центру** |
-| Аннотация | **Аннотация —** текст (метка и текст **жирным**, в колонках) |
-| Ключевые слова | **Ключевые слова —** текст (жирным) |
-| Раздел | **I. ВВЕДЕНИЕ** — римские цифры, small caps, по центру |
-| Подраздел | *A. LISA* — буквы A, B, C…, курсив |
-| Подписи рисунков | «Рис. N.», мелкий шрифт |
-| Подписи таблиц | «Таблица I.» (римские цифры) |
-| Литература | заголовок **ЛИТЕРАТУРА** по центру; `[N]` и текст на одной строке, мелкий шрифт |
+PDF собирается автоматически после push и pull request. Файлы `article.pdf` и `example.pdf` доступны в разделе Artifacts успешного запуска [GitHub Actions](https://github.com/NemoFlip/distributed-db-load-balancing-article/actions).
 
-## Пример
+Локально необходим XeLaTeX или Tectonic:
 
-Каталог `example/` — полная статья, по которой сверяется класс. Это не заготовка для новой работы.
-
-```bash
+```sh
+make article
 make example
-# готовый PDF для просмотра: example/build/example.pdf
+make dist
 ```
 
-Рядом с `example.tex` лежит ссылка `misisarticle.cls` на класс в корне, поэтому команда `\documentclass` такая же, как в шаблоне. PDF шаблона и примера можно скачать из артефактов [GitHub Actions](https://github.com/sadekovlar/misis-article-latex/actions): `article.pdf` и `example.pdf`.
+Результаты: `build/article.pdf`, `example/build/example.pdf` и `dist/misis-article.zip`.
 
-## Чек-лист перед сдачей
-
-- [ ] Компилятор: **XeLaTeX** (или tectonic)
-- [ ] Файл `misisarticle.cls` рядом с вашим `.tex`
-- [ ] Заполнены коды, аннотация и ключевые слова
-- [ ] Рисунки с подписями «Рис. N.»
-- [ ] Таблицы с подписями «Таблица …»
-- [ ] PDF собирается без ошибок
+Для Overleaf: загрузить архив из `make dist`, выбрать компилятор XeLaTeX и главный файл `article.tex`.
 
 ## Лицензия
 
-Класс `misisarticle.cls` распространяется под [LPPL 1.3c](https://www.latex-project.org/lppl/). Текст лицензии — в файле `LICENSE`.
+Класс `misisarticle.cls` распространяется по LPPL 1.3c. Текст лицензии находится в [LICENSE](LICENSE).

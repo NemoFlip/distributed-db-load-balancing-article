@@ -1,103 +1,74 @@
 % !TEX program = xelatex
-% Шаблон научной статьи НИТУ «МИСиС»
-% Заполните блоки ниже и скомпилируйте: xelatex article.tex
-
 \documentclass{misisarticle}
 
-% --- Классификационные коды (оставьте пустым {}, если не требуются) ---
-\grnti{47.01.07, 47.01.09}
-\asjc{1707, 2207}
-\oecd{1020, 1070}
+\grnti{20.23.17, 28.29.07, 28.17.19}
+\asjc{1710, 1708, 2611}
+\oecd{1.2, 1.1}
 
-% --- Название ---
-\title{Название вашей научной статьи}
+\title{Сравнительный анализ и классификация моделей балансировки нагрузки в распределённых СУБД}
 
-% --- Авторы: \misisauthor{ФИО}{аффилиация}{город, страна}{email} ---
-\misisauthor{И.~О.~Фамилия}{кафедра инженерной кибернетики НИТУ «МИСиС»}{Москва, Россия}{student@edu.misis.ru}
-\misisauthor{П.~П.~Научный}{кафедра инженерной кибернетики НИТУ «МИСиС»}{Москва, Россия}{supervisor@misis.ru}
+% TODO: аффилиация, город и email.
+\misisauthor{Хлопцев Артём Евгеньевич}{}{}{}
 
-% --- Аннотация и ключевые слова ---
-\abstract{%
-  Краткое изложение работы (5--10 предложений): постановка задачи, метод, основные результаты и выводы.
-}
-
-\keywords{%
-  ключевое слово 1, ключевое слово 2, ключевое слово 3
-}
+% TODO: аннотация.
+\abstract{}
+\keywords{балансировка нагрузки; распределённые СУБД; NewSQL; шардирование; консенсус Raft; горячие сегменты.}
 
 \begin{document}
-
 \maketitle
 
-% ============================================================
 \section{Введение}
+% TODO: актуальность, проблема, цель и границы исследования.
 
-Первый абзац раздела начинается с красной строки (отступ 0{,}51~см). Текст выравнивается по ширине, шрифт Times New Roman, 10~pt.
+\section{Анализ работ}
+% TODO: анализ литературы, классификация подходов и исследовательский пробел.
 
-Второй абзац. Ссылки на литературу оформляйте так~\cite{example2024}. Для нескольких источников:~\cite{example2024, book2023}.
+\section{Постановка задачи}
+% TODO: переменные размещения, модель нагрузки, целевые функции и ограничения.
 
-% ============================================================
-\section{Основная часть}
+\section{Описание методов}
+% TODO: базовые стратегии, предлагаемая модель и протокол проверки.
 
-\subsection{Подраздел}
-
-Подзаголовки второго уровня набираются \textit{курсивом}.
-
-Пример маркированного списка:
-\begin{itemize}
-  \item первый пункт;
-  \item второй пункт;
-  \item третий пункт.
-\end{itemize}
-
-Пример формулы в строке: мера Жаккара $IoU = \dfrac{|A \cap B|}{|A \cup B|}$.
-
-Нумерованная формула (ссылка в тексте: формула~\eqref{eq:f1}):
-\begin{equation}
-  F_1 = 2 \cdot \frac{P \cdot R}{P + R}
-       = \frac{2TP}{2TP + FP + FN},
-  \label{eq:f1}
-\end{equation}
-где $P$~--- precision, $R$~--- recall, $TP$, $FP$, $FN$~--- число истинно и ложно положительных/отрицательных детекций.
-
-% --- Рисунок ---
-\begin{figure}[htbp]
-  \centering
-  % Замените заглушку на свой файл:
-  % \includegraphics[width=0.75\linewidth]{figures/figure}
-  \fbox{\parbox[c][3cm][c]{0.9\columnwidth}{\centering Placeholder для рисунка}}
-  \caption{Пример иллюстрации. Замените заглушку на свой файл из папки figures.}
-  \label{fig:example}
-\end{figure}
-
-% --- Таблица ---
-\begin{table}[htbp]
-  \caption{Пример таблицы с результатами}
-  \label{tab:example}
-  \centering
-  \begin{tabular}{lcc}
-    \toprule
-    \textbf{Метод} & \textbf{Precision} & \textbf{Recall} \\
-    \toprule
-    Метод~A & 0.85 & 0.78 \\
-    Метод~B & 0.91 & 0.83 \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-% ============================================================
-\section{Заключение}
-
-Кратко сформулируйте основные выводы работы.
-
-% ============================================================
-% Список литературы — вариант 1: вручную
 \begin{thebibliography}{9}
 
-\bibitem{example2024} Author A., Author B. Title of the paper. \textit{Journal Name}, vol.~1, no.~2, pp.~100--110, 2024.
+\bibitem{curino2010}
+Curino C., Jones E. P. C., Zhang Y., Madden S.
+Schism: A Workload-Driven Approach to Database Replication and Partitioning //
+PVLDB. 2010. Vol.~3, No.~1--2. P.~48--57.
+\url{https://doi.org/10.14778/1920841.1920853}.
 
-\bibitem{book2023} Author C. \textit{Book Title}. Publisher, City, 2023.
+\bibitem{lee2021}
+Lee S., Guo Z., Sunercan O. et al.
+Shard Manager: A Generic Shard Management Framework for Geo-distributed Applications //
+SOSP 2021. P.~553--569.
+\url{https://doi.org/10.1145/3477132.3483546}.
+
+\bibitem{taft2020}
+Taft R., Sharif I., Matei A. et al.
+CockroachDB: The Resilient Geo-Distributed SQL Database //
+SIGMOD 2020. P.~1493--1509.
+\url{https://doi.org/10.1145/3318464.3386134}.
+
+\bibitem{antonov2023}
+Антонов И.~А., Исаченко М.~К.
+Методы машинного обучения для обнаружения вторжений в сетях интернета вещей //
+Искусственный интеллект в промышленных, коммерческих, медицинских и финансовых приложениях:
+сборник статей научно-технического семинара студентов.
+Вып.~1. М.: НИТУ МИСИС, 2023. С.~9--15.
+\url{https://sadekov.su/Articles/kik_2023.pdf#page=11}.
+
+\bibitem{sosedka2024}
+Соседка А.~В., Ибрагимов П.~И.
+Количественный и качественный анализ аудитории Telegram в разрезе рекомендаций с использованием больших языковых моделей //
+Искусственный интеллект в промышленных, коммерческих, медицинских и финансовых приложениях.
+М.: НИТУ МИСИС, 2024. С.~116--120.
+\url{https://sadekov.su/Articles/kik_2024_1.pdf#page=117}.
+
+\bibitem{tarkhanov2020}
+Tarkhanov I.~A., Akimova G.~P., Pashkin M.~A., Solovyev A.~V.
+Modelling the Methodology to Assess the Effectiveness of Distributed Information Systems //
+ASTESJ. 2020. Vol.~5, No.~1. P.~86--92.
+\url{https://astesj.com/v05/i01/p11}.
 
 \end{thebibliography}
-
 \end{document}
